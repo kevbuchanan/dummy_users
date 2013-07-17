@@ -1,17 +1,29 @@
 class User < ActiveRecord::Base
-  validates :email, uniqueness: true, presence: true, format: {with: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/ message:"Invalid email format"}
-  validates :password, presence: true, length: {in: 6..10, message:"Must be 6 to 10 characters"}
+  attr_accessor :raw_password
+  attr_accessor :raw_password_confirmation
+  validates :email, uniqueness: true, presence: true, format: {with: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/, message: "Invalid email format"}
+  validates :raw_password, presence: true, length: { in: 6..10, too_short:"Must be 6 to 12 characters"}
+  validates_confirmation_of :raw_password, message: 'passwords should match'
+  before_save :generate_hash
+  
+  def generate_hash
+    self.password_hash = BCrypt::Password.create(self.raw_password)
+  end
 
   def password
-    Password.new(self.password_hash)
+    BCrypt::Password.new(self.password_hash)
   end
 
   def password=(new_password)
-    self.password_hash = Password.create(new_password)
+    self.password_hash = BCrypt::Password.create(new_password)
   end
 
   def self.authenticate(email, password)
     user = User.find_by_email(email)
-    user if user.password == password
+    if user && user.password == password
+      user
+    else
+      nil
+    end
   end
 end
