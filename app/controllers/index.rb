@@ -4,8 +4,14 @@ get '/' do
   erb :index
 end
 
+
+before '/success' do
+  redirect to('/') unless session[:user]
+  @user = User.find(session[:user])
+end
+
 get '/success' do
-  
+  erb :success
 end
 
 post '/create' do
@@ -27,4 +33,9 @@ post '/login' do
   else
     erb :index
   end
+end
+
+post '/logout' do
+  session.delete(:user)
+  redirect to ('/')
 end
