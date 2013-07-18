@@ -1,20 +1,23 @@
-<div class="container">
-<h1>Create Account</h1>
-<%if @user %>
-<% @user.errors.each do |attribute, message| %>
-<p>Error: <%=attribute%> <%=message%></p>
+<h1>Welcome to the Url shortener</h1>
+<% if logged_in? %>
+  <p>Logged In as <a href="/users/<%=current_user.id%>"><%=current_user.email%></a></p>
+  <form action='/logout' method='post'><input type='submit' value='Logout'></form>
+<% else %>
+  <a href="/login">Login</a>
 <% end %>
-<% end %>
-<form action="/create" method="post">
-  <label>Email: <input type="text" name="user[email]"></label><br>
-  <label>Password: <input type="password" name="user[raw_password]"></label><br>
-  <label>Password Confirmation: <input type="password" name="user[raw_password_confirmation]"></label>
-  <input type="submit" value="submit">
-</form>
-<h1>Login</h1>
-<form action="/login" method="post">
-  <label>Email: <input type="text" name="user[email]"></label><br>
-  <label>Password: <input type="password" name="user[raw_password]"></label>
-  <input type="submit" value="submit">
-</form>
-</div>
+<%= erb :_new_url, layout: false %>
+<h3>Existing Urls</h3>
+<table>
+  <thead>
+    <th>Original</th>
+    <th>Shortened</th>
+  </thead>
+  <tbody>
+  <% @urls.each do |url| %>
+    <tr>
+      <td><%= url.original %></td>
+      <td><a href="http://localhost:9393/z/<%=url.short_url%>">http://localhost:9393/z/<%=url.short_url%></a></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

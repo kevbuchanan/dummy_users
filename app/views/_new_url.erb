@@ -1,0 +1,9 @@
+<%if @url%>
+<% @url.errors.each do |attribute, message| %>
+<p>Error: URL <%=message%> </p>
+<% end %>
+<% end %>
+<form action='/url/create' method='post'>
+  <label>Enter URL: <input type='text' name='url[original]' placeholder="Your URL"></label>
+  <input type='submit' value='Submit'>
+</form>

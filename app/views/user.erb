@@ -1,0 +1,4 @@
+<h3><%=@user.email%>'s urls</h3>
+<% @urls.each do |url| %>
+<%= erb :_url_details, layout: false, locals: {url: url} %>
+<% end %>
