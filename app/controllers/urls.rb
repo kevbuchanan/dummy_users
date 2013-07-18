@@ -3,13 +3,8 @@ get '/' do
   erb :index
 end
 
-get '/url/:url_id' do
-  @url = Url.find(params[:url_id])
-  erb :url
-end
-
 get '/z/:short_url' do
-  @url = Url.find_by_shortened_url(params[:short_url])
+  @url = Url.find_by_short_url(params[:short_url])
   @url.add_click
   redirect to(@url.original)
 end

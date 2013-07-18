@@ -1,9 +1,97 @@
+body {
+  background-color: #3498DB;
+}
+
 .container {
   margin: 20px auto;
-  width: 600px;
-  padding: 0px 20px 20px 20px;
-  border: 1px dotted black;
+  width: 800px;
+  padding-bottom: 20px;
+  border-radius: 5px;
+  background-color: #ECF0F1;
 }
+
 th {
   text-align: left;
+}
+
+header {
+  margin: 0 auto;
+  background-color: #E74C3C;
+  line-height: 70px;
+  height: 70px;
+  padding: 10px;
+  border-radius: 5px 5px 0 0;
+}
+
+header h1, header h3 {
+  float: left;
+  margin: 0 auto;
+  color: white;
+}
+
+.session {
+  margin: 0;
+  margin-right: 10px;
+  float: right;
+  color: white;
+  padding: 0;
+  height: 70px;
+}
+
+.session a, .session a:link, .session a:visited {
+  text-decoration: none;
+  color: white;
+}
+
+.session a.user {
+  text-decoration: underline;
+  margin-right: 10px;
+}
+
+.session form {
+  display: inline;
+}
+
+.new {
+  clear: both;
+  margin: 20px;
+}
+
+input {
+  border-radius: 5px;
+  padding: 5px;
+  margin-right: 10px;
+}
+
+.btn {
+  border-radius: 5px;
+  background-color: #3498DB;
+  border: none;
+  color: white;
+  padding: 10px;
+}
+
+.table {
+  margin: 20px;
+  padding: 10px;
+  padding-top: 5px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.table h3 {
+  padding: 10px;
+  padding-top: 0;
+}
+
+.table a, a:link, a:visited {
+  color: black;
+}
+
+th, td {
+  padding: 10px;
+}
+
+input {
+  margin-bottom: 10px;
 }

@@ -1,21 +1,29 @@
-<h1>Create Account</h1>
-<%if @user %>
-  <% @user.errors.each do |attribute, message| %>
-    <p>Error: <%=attribute%> <%=message%></p>
+<header>
+  <h1>Awesome URL Shortener</h1>
+  <div class='session'>
+    <a href='/'>Back</a>
+  </div>
+</header>
+<div class='table' class='sign-in'>
+  <h1>Create Account</h1>
+  <%if @user %>
+    <% @user.errors.each do |attribute, message| %>
+      <p>Error: <%=attribute%> <%=message%></p>
+    <% end %>
   <% end %>
-<% end %>
-<form action="/users/create" method="post">
-  <label>Email: <input type="text" name="user[email]"></label><br>
-  <label>Password: <input type="password" name="user[password]"></label><br>
-  <label>Password Confirmation: <input type="password" name="user[password_confirmation]"></label>
-  <input type="submit" value="submit">
-</form>
-<h1>Login</h1>
-<% if @error %>
-  <p><%= @error %></p>
-<% end %>
-<form action="/login" method="post">
-  <label>Email: <input type="text" name="user[email]"></label><br>
-  <label>Password: <input type="password" name="user[password]"></label>
-  <input type="submit" value="submit">
-</form>
+  <form action="/users/create" method="post">
+    <label>Email: <input type="text" name="user[email]"></label><br>
+    <label>Password: <input type="password" name="user[password]"></label><br>
+    <label>Password Confirmation: <input type="password" name="user[password_confirmation]"></label>
+    <input class='btn' type="submit" value="submit">
+  </form>
+  <h1>Login</h1>
+  <% if @error %>
+    <p><%= @error %></p>
+  <% end %>
+  <form action="/login" method="post">
+    <label>Email: <input type="text" name="user[email]"></label><br>
+    <label>Password: <input type="password" name="user[password]"></label>
+    <input class='btn' type="submit" value="submit">
+  </form>
+</div>

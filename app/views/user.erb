@@ -1,4 +1,11 @@
+<header>
+<div class = 'session'>
+<a href='/'>Back</a>
+</div>
 <h3><%=@user.email%>'s urls</h3>
+</header>
+<div class='table'>
 <% @urls.each do |url| %>
 <%= erb :_url_details, layout: false, locals: {url: url} %>
 <% end %>
+</div>

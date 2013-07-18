@@ -1,23 +1,31 @@
-<h1>Welcome to the Url shortener</h1>
-<% if logged_in? %>
-  <p>Logged In as <a href="/users/<%=current_user.id%>"><%=current_user.email%></a></p>
-  <form action='/logout' method='post'><input type='submit' value='Logout'></form>
-<% else %>
-  <a href="/login">Login</a>
-<% end %>
+<header>
+  <h1>Awesome URL Shortener</h1>
+  <div class='session'>
+    <% if logged_in? %>
+      <span>Logged In as <a class='user' href="/users/<%=current_user.id%>"><%=current_user.email%></a></span>
+      <form action='/logout' method='post'><input class='btn logout' type='submit' value='Logout'></form>
+    <% else %>
+      <form action='/login' method='get'><input class='btn logout' type='submit' value='Login'></form>
+    <% end %>
+  </div>
+</header>
+<div class='new'>
 <%= erb :_new_url, layout: false %>
-<h3>Existing Urls</h3>
-<table>
-  <thead>
-    <th>Original</th>
-    <th>Shortened</th>
-  </thead>
-  <tbody>
-  <% @urls.each do |url| %>
-    <tr>
-      <td><%= url.original %></td>
-      <td><a href="http://localhost:9393/z/<%=url.short_url%>">http://localhost:9393/z/<%=url.short_url%></a></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+</div>
+<div class='table'>
+  <h3>Existing Urls</h3>
+  <table>
+    <thead>
+      <th>Original</th>
+      <th>Shortened</th>
+    </thead>
+    <tbody>
+    <% @urls.each do |url| %>
+      <tr>
+        <td><%= url.original %></td>
+        <td><a href="http://localhost:9393/z/<%=url.short_url%>">http://localhost:9393/z/<%=url.short_url%></a></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
